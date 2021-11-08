@@ -1,0 +1,10 @@
+version: '2'
+services:
+  lite_server:
+    image: "node:8"
+    working_dir: /app
+    volumes:
+      - ./:/app
+    ports:
+      - 8080:3000
+    command: bash -c "pwd && cd app && npm start"
