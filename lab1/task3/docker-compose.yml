@@ -7,5 +7,5 @@ services:
       - ./:/app
     ports:
       - 8080:3000
-    command: bash -c "cd app && npm install -g json-server && json-server --host 0.0.0.0 --watch db.json"
+    command: bash -c "npm install -g json-server && json-server --host 0.0.0.0 --watch db.json"
     

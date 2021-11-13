@@ -5,8 +5,8 @@ services:
     volumes:
     - ./etc/nginx/nginx.conf:/etc/nginx/nginx.conf
     ports:
-    - "$NGINX_PORT1:$NGINX_PORT1"
-    - "$NGINX_PORT2:$NGINX_PORT2"
+    - $NGINX_PORT1:$NGINX_PORT1
+    - $NGINX_PORT2:$NGINX_PORT2
 
   lite-server-node:
     image: "node:$NODE_VERSION"
@@ -15,7 +15,7 @@ services:
     - ./:/app
     expose:
     - $LITE_PORT
-    command: bash -c "pwd && cd app && npm start"
+    command: bash -c "pwd && cd app && npm i -g lite-server && lite-server"
 
   json-server-node:
     image: "node:$NODE_VERSION"
@@ -27,4 +27,4 @@ services:
     expose:
     - $JSON_PORT
     #  - 8000
-    command: bash -c "echo JSON_PORT is $JSON_PORT && cd app && npm install -g json-server && json-server --host 0.0.0.0 --watch db.json --port $JSON_PORT"
+    command: bash -c "echo JSON_PORT is $JSON_PORT && npm install -g json-server && json-server --host 0.0.0.0 --watch db.json --port $JSON_PORT"
